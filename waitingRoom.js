@@ -54,6 +54,18 @@ function updateImage(counterValue) {
     imgElement.src = imageUrl;
 }
 
+  function addColoredCircle(color, idold) {
+    // Crée un nouvel élément <span> pour le cercle
+    const circle = document.createElement('span');
+    circle.className = 'circle';
+    circle.style.backgroundColor = color;
+
+    // Trouve l'élément avec l'id "old1"
+    const idold = document.getElementById('idold');
+
+    // Ajoute le cercle après l'élément avec l'id "idold"
+    idold.parentNode.insertBefore(circle, idold.nextSibling);
+  }
 
 onSnapshot(doc(db, 'waitingRoom', 'current'), (doc) => {
     if (doc.exists) {
@@ -68,7 +80,17 @@ onSnapshot(doc(db, 'waitingRoom', 'current'), (doc) => {
 
                 const oldNumbers = data.oldNumbers || [];
                 for (let i = 0; i < 5; i++) {
-                    document.getElementById(`old${i + 1}`).textContent = oldNumbers[i] !== undefined ? oldNumbers[i] : '-';
+                    let tampon = "";
+                    tampon = oldNumbers[i] !== undefined ? oldNumbers[i] : '-';
+                    if (tampon != '-'){
+                        document.getElementById(`old${i + 1}`).textContent = tampon.slice(0, 2);
+                        addColoredCircle(tampon.slice(5, 6),`old${i + 1}`);
+                        document.getElementById(`old${i + 1}-2`).textContent = tampon.slice(9, 10);
+                    }
+                    else {
+                        document.getElementById(`old${i + 1}`).textContent = "-";
+                        document.getElementById(`old${i + 1}-2`).textContent = " ";
+                    }
                 }
                 
                 const oldTimes = data.oldTimes || [];
