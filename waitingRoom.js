@@ -85,7 +85,25 @@ function addColoredCircle(color, oldId) {
     console.error(`L'élément avec l'id "${oldId}" n'a pas été trouvé.`);
   }
 }
+function removeColoredCircle(oldId) {
+  // Trouve l'élément avec l'id spécifié
+  const oldElement = document.getElementById(oldId);
 
+  // Vérifie si l'élément existe
+  if (oldElement) {
+    // Trouve le cercle à supprimer (le premier <span> avec la classe 'circle' après l'élément)
+    const circle = oldElement.nextSibling;
+    
+    // Vérifie si le cercle existe et s'il a bien la classe 'circle'
+    if (circle && circle.classList.contains('circle')) {
+      circle.parentNode.removeChild(circle);
+    } else {
+      console.warn('Aucun cercle à supprimer après l\'élément spécifié.');
+    }
+  } else {
+    console.error(`L'élément avec l'id "${oldId}" n'a pas été trouvé.`);
+  }
+}
 
 onSnapshot(doc(db, 'waitingRoom', 'current'), (doc) => {
     if (doc.exists) {
@@ -104,11 +122,13 @@ onSnapshot(doc(db, 'waitingRoom', 'current'), (doc) => {
                     tampon = oldNumbers[i] !== undefined ? oldNumbers[i] : '-';
                     if (tampon != '-'){
                         document.getElementById(`old${i + 1}`).textContent = tampon.slice(0, 2);
+                        removeColoredCircle(`old${i + 1}`)
                         addColoredCircle(tampon.slice(5, 6),`old${i + 1}`);
                         document.getElementById(`old${i + 1}-2`).textContent = tampon.slice(9, 10);
                     }
                     else {
                         document.getElementById(`old${i + 1}`).textContent = "-";
+                        removeColoredCircle(`old${i + 1}`)
                         document.getElementById(`old${i + 1}-2`).textContent = " ";
                     }
                 }
