@@ -121,10 +121,10 @@ onSnapshot(doc(db, 'waitingRoom', 'current'), (doc) => {
                     let tampon = "";
                     tampon = oldNumbers[i] !== undefined ? oldNumbers[i] : '-';
                     if (tampon != '-'){
-                        document.getElementById(`old${i + 1}`).textContent = tampon.slice(0, 2);
+                        document.getElementById(`old${i + 1}`).textContent = tampon.slice(0, 2) + " ";
                         removeColoredCircle(`old${i + 1}`)
                         addColoredCircle(tampon.slice(5, 6),`old${i + 1}`);
-                        document.getElementById(`old${i + 1}-2`).textContent = tampon.slice(9, 10);
+                        document.getElementById(`old${i + 1}-2`).textContent = " " + tampon.slice(9, 10);
                     }
                     else {
                         document.getElementById(`old${i + 1}`).textContent = "-";
