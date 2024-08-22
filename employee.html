@@ -54,18 +54,6 @@
       justify-content: center; /* Centre horizontalement */
       align-items: center; /* Centre verticalement */
     }
-    select {
-      width: 200px;
-      height: 200px;
-      padding: 5px;
-      font-size: 150px;
-      border-radius: 10px; /* coins arrondis */
-      border: 6px solid black; /* bordure bleue */
-      font-family: Impact, Helvetica, sans-serif;
-      background-color: #f8f9fa; /* couleur de fond */
-      color: #333; /* couleur du texte */
-      text-align: center;
-    }
 
     /* Icône personnalisée pour la flèche déroulante */
     select::after {
@@ -78,13 +66,16 @@
     }
 
     /* Conteneur pour le positionnement de l'icône */
-    .case7 {
+    .case7A {
+            position: relative;
+            display: inline-block;
+      }
+  .case7 {
       position: relative;
       display: flex;
       justify-content: center; /* Centre horizontalement */
       align-items: center; /* Centre verticalement */
       }
-      
     .case13 {
       font-family: Impact, Helvetica, sans-serif;
       text-align: center;
@@ -547,6 +538,28 @@ h1 {
                 .hidden {
             display: none;
         }
+	          /* Style pour le select */
+        select {
+            -webkit-appearance: none; /* Supprimer le style natif du select */
+            appearance: none;
+            background: url('path-to-arrow-image.png') no-repeat right center;
+            background-size: 20px;
+            padding-right: 30px; /* Ajustez pour la taille de la flèche */
+            font-size: 16px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        /* Style pour les options avec images */
+        select option {
+            background-size: 20px;
+            background-repeat: no-repeat;
+            padding-left: 30px;
+        }
+	.option1 { background-image: url('rouge.png'); }
+        .option2 { background-image: url('vert.png'); }
+        .option3 { background-image: url('bleu.png'); }
   </style>
 </head>
 <body>
@@ -558,7 +571,7 @@ h1 {
 
 <div id="onglet1" class="tab-content">
   <div class="grid-container">
-    <div class="grid-item case1">ÉDIFICE MURRAY</div>
+    <div class="grid-item case1">PSL</div>
 
 <div class="grid-item case3">
   <span id="userEmail">AdresseEmail</span> &nbsp
@@ -579,18 +592,13 @@ h1 {
     </form>
     <form>
    
-    <div class="case7">
+<div class="case7A">
         <select id="counterNumber1">
-            <option value="">-</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
+            <option value="" disabled selected>-</option>
+            <option class="option1" value="R">1</option>
+            <option class="option2" value="V">2</option>
+            <option class="option3" value="B">3</option>
+            <!-- Ajoutez plus d'options ici -->
         </select>
     </div>
 </form>
