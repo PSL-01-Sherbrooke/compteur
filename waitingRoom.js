@@ -43,7 +43,7 @@ function updateImage(counterValue) {
         case 'B':
             imageUrl = 'https://psl-01-sherbrooke.github.io/compteur/bleu.png';
             break;
-        case 'B':
+        case 'C':
             imageUrl = 'https://psl-01-sherbrooke.github.io/compteur/cyan.png';
             break;
         default:
