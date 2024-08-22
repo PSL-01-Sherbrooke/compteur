@@ -538,28 +538,50 @@ h1 {
                 .hidden {
             display: none;
         }
-	          /* Style pour le select */
-        select {
-            -webkit-appearance: none; /* Supprimer le style natif du select */
-            appearance: none;
-            background: url('path-to-arrow-image.png') no-repeat right center;
-            background-size: 20px;
-            padding-right: 30px; /* Ajustez pour la taille de la flèche */
-            font-size: 16px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
+/* Style pour la liste déroulante */
+.custom-select {
+    position: relative;
+    display: inline-block;
+}
 
-        /* Style pour les options avec images */
-        select option {
-            background-size: 20px;
-            background-repeat: no-repeat;
-            padding-left: 30px;
-        }
-	.option1 { background-image: url('rouge.png'); }
-        .option2 { background-image: url('vert.png'); }
-        .option3 { background-image: url('bleu.png'); }
+.select-selected {
+    background-color: #ddd;
+    padding: 10px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+
+.select-items {
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    z-index: 99;
+    width: 100%;
+    display: none;
+}
+
+.select-items .option {
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.select-items .option img {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+/* Style pour afficher les éléments sélectionnés */
+.select-hide {
+    display: none;
+}
+
+.select-items.select-show {
+    display: block;
+}
+
   </style>
 </head>
 <body>
@@ -590,18 +612,18 @@ h1 {
         </select>
     </div>
     </form>
-    <form>
-   
-<div class="case7A">
-        <select id="counterNumber1">
-            <option value="" disabled selected>-</option>
-            <option class="option1" value="R">1</option>
-            <option class="option2" value="V">2</option>
-            <option class="option3" value="B">3</option>
-            <!-- Ajoutez plus d'options ici -->
-        </select>
+	  
+<form>
+    <div class="custom-select">
+        <div class="select-selected">Select</div>
+        <div class="select-items select-hide">
+            <div data-value="R" class="option" data-image="rouge.png">1</div>
+            <div data-value="V" class="option" data-image="vert.png">2</div>
+            <div data-value="B" class="option" data-image="bleu.png">3</div>
+        </div>
     </div>
 </form>
+
       
     <div></div>
     <div></div>
@@ -842,6 +864,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             });
         });
+
+	    
     }
 
     // Appliquer la gestion des cases pour chaque groupe
@@ -862,9 +886,32 @@ document.addEventListener("DOMContentLoaded", function () {
 
     borneInferieure.addEventListener('input', validateBounds);
     borneSuperieure.addEventListener('input', validateBounds);
+
+	    const select = document.querySelector('.custom-select');
+    const selected = select.querySelector('.select-selected');
+    const items = select.querySelector('.select-items');
+
+    selected.addEventListener('click', function() {
+        items.classList.toggle('select-show');
+    });
+
+    items.querySelectorAll('.option').forEach(option => {
+        option.addEventListener('click', function() {
+            selected.textContent = this.textContent;
+            selected.dataset.value = this.dataset.value;
+            items.classList.remove('select-show');
+        });
+    });
+
+    document.addEventListener('click', function(e) {
+        if (!select.contains(e.target)) {
+            items.classList.remove('select-show');
+        }
+    });
 });
 
-        
+
+
 </script>
 <script type="module">
 	import { doc, setDoc, getDoc, updateDoc, collection, addDoc, query, getDocs, where } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js";
@@ -901,6 +948,8 @@ document.addEventListener("DOMContentLoaded", function () {
             await fetchSettings();
 	    document.querySelector('.button1').onclick = () => callNextUser(tempsPause);
         };
+
+
 	
 </script>
 </body>
