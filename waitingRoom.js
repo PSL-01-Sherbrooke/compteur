@@ -60,16 +60,16 @@ function addColoredCircle(color, oldId) {
   circle.className = 'circle';
 
   // Définition des couleurs
-  const colors = {
-    'G': 'gray',
-    'R': 'red',
-    'V': 'green',
-    'J': 'yellow',
-    'O': 'orange',
-    'M': 'purple',
-    'B': 'blue',
-    'C': 'lightblue'
-  };
+const colors = {
+  'G': 'rgb(108, 108, 104)', // gray
+  'R': 'rgb(186, 52, 53)',     // red
+  'V': 'rgb(79, 94, 34)',     // green
+  'J': 'rgb(227, 222, 131)',   // yellow
+  'O': 'rgb(215, 129, 89)',   // orange
+  'M': 'rgb(102, 29, 84)',   // purple
+  'B': 'rgb(37, 82, 143)',     // blue
+  'C': 'rgb(181, 223, 197)'  // lightblue
+};
 
   // Applique la couleur en fonction du paramètre
   circle.style.backgroundColor = colors[color] || ''; // Valeur par défaut pour une couleur non définie
