@@ -54,18 +54,23 @@ function updateImage(counterValue) {
     imgElement.src = imageUrl;
 }
 
-  function addColoredCircle(color, idold) {
-    // Crée un nouvel élément <span> pour le cercle
-    const circle = document.createElement('span');
-    circle.className = 'circle';
-    circle.style.backgroundColor = color;
+function addColoredCircle(color, oldId) {
+  // Crée un nouvel élément <span> pour le cercle
+  const circle = document.createElement('span');
+  circle.className = 'circle';
+  circle.style.backgroundColor = color;
 
-    // Trouve l'élément avec l'id "old1"
-    const idold = document.getElementById('idold');
+  // Trouve l'élément avec l'id spécifié
+  const oldElement = document.getElementById(oldId);
 
-    // Ajoute le cercle après l'élément avec l'id "idold"
-    idold.parentNode.insertBefore(circle, idold.nextSibling);
+  // Vérifie si l'élément existe
+  if (oldElement) {
+    // Ajoute le cercle après l'élément avec l'id spécifié
+    oldElement.parentNode.insertBefore(circle, oldElement.nextSibling);
+  } else {
+    console.error(`L'élément avec l'id "${oldId}" n'a pas été trouvé.`);
   }
+}
 
 onSnapshot(doc(db, 'waitingRoom', 'current'), (doc) => {
     if (doc.exists) {
