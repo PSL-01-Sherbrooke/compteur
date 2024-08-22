@@ -16,6 +16,30 @@ function speakNumber(number) {
     window.speechSynthesis.speak(speech);
 }
 
+  // Fonction pour mettre à jour l'image en fonction de la valeur du compteur
+function updateImage(counterValue) {
+    const imgElement = document.getElementById('colorImage');
+    
+    let imageUrl = '';
+    switch (counterValue) {
+        case 'R':
+            imageUrl = 'https://psl-01-sherbrooke.github.io/compteur/rouge.png';
+            break;
+        case 'V':
+            imageUrl = 'https://psl-01-sherbrooke.github.io/compteur/vert.png';
+            break;
+        case 'B':
+            imageUrl = 'https://github.com/username/repository/raw/main/bleue.png';
+            break;
+        default:
+            imageUrl = ''; // Optionnel : définir une image par défaut ou garder l'image vide
+            break;
+    }
+
+    imgElement.src = imageUrl;
+}
+
+
 onSnapshot(doc(db, 'waitingRoom', 'current'), (doc) => {
     if (doc.exists) {
         const data = doc.data();
@@ -24,7 +48,7 @@ onSnapshot(doc(db, 'waitingRoom', 'current'), (doc) => {
 
             const formattedNumber = formatNumber1(data.number);
                 currentNumberElement.textContent = formattedNumber;
-                document.getElementById('counterNumber').textContent = data.counter;
+                updateImage(data.counter);
                 document.getElementById('roomNumber').textContent = data.room;
 
                 const oldNumbers = data.oldNumbers || [];
