@@ -22,7 +22,7 @@ async function callNextUser(tempsPause) {
         let newOldTimes = currentData.oldTimes;
 
         if (currentData.counter != "?") {
-            newOldNumbers.unshift(`${currentData.number.toString().padStart(2, '0')} - ${currentData.room} - ${currentData.counter}`);
+            newOldNumbers.unshift(`${currentData.number.toString().padStart(2, '0')} - ${currentData.counter} - ${currentData.room}`);
             newOldTimes.unshift(Date.now());
         }
 
