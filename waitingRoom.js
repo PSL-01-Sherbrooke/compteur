@@ -22,14 +22,29 @@ function updateImage(counterValue) {
     
     let imageUrl = '';
     switch (counterValue) {
+        case 'G':
+            imageUrl = 'https://psl-01-sherbrooke.github.io/compteur/gris.png';
+            break;
         case 'R':
             imageUrl = 'https://psl-01-sherbrooke.github.io/compteur/rouge.png';
             break;
         case 'V':
-            imageUrl = 'https://psl-01-sherbrooke.github.io/compteur/vert.png';
+            imageUrl = 'https://github.com/username/repository/raw/main/vert.png';
+            break;
+        case 'J':
+            imageUrl = 'https://github.com/username/repository/raw/main/jaune.png';
+            break;
+        case 'O':
+            imageUrl = 'https://github.com/username/repository/raw/main/orange.png';
+            break;
+        case 'M':
+            imageUrl = 'https://github.com/username/repository/raw/main/mauve.png';
             break;
         case 'B':
-            imageUrl = 'https://github.com/username/repository/raw/main/bleue.png';
+            imageUrl = 'https://github.com/username/repository/raw/main/bleu.png';
+            break;
+        case 'B':
+            imageUrl = 'https://github.com/username/repository/raw/main/cyan.png';
             break;
         default:
             imageUrl = ''; // Optionnel : définir une image par défaut ou garder l'image vide
