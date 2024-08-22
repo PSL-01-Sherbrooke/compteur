@@ -59,36 +59,20 @@ function addColoredCircle(color, oldId) {
   const circle = document.createElement('span');
   circle.className = 'circle';
 
-switch (color) {
-        case 'G':
-            circle.style.backgroundColor = gray;
-            break;
-        case 'R':
-            circle.style.backgroundColor = red;
-            break;
-        case 'V':
-            circle.style.backgroundColor = green;
-            break;
-        case 'J':
-            circle.style.backgroundColor = yellow;
-            break;
-        case 'O':
-            circle.style.backgroundColor = orange;
-            break;
-        case 'M':
-            circle.style.backgroundColor = purpule;
-            break;
-        case 'B':
-            circle.style.backgroundColor = blue;
-            break;
-        case 'C':
-            circle.style.backgroundColor = lightblue;
-            break;
-        default:
-            imageUrl = ''; // Optionnel : définir une image par défaut ou garder l'image vide
-            break;
-    }
-    
+  // Définition des couleurs
+  const colors = {
+    'G': 'gray',
+    'R': 'red',
+    'V': 'green',
+    'J': 'yellow',
+    'O': 'orange',
+    'M': 'purple',
+    'B': 'blue',
+    'C': 'lightblue'
+  };
+
+  // Applique la couleur en fonction du paramètre
+  circle.style.backgroundColor = colors[color] || ''; // Valeur par défaut pour une couleur non définie
 
   // Trouve l'élément avec l'id spécifié
   const oldElement = document.getElementById(oldId);
@@ -101,6 +85,7 @@ switch (color) {
     console.error(`L'élément avec l'id "${oldId}" n'a pas été trouvé.`);
   }
 }
+
 
 onSnapshot(doc(db, 'waitingRoom', 'current'), (doc) => {
     if (doc.exists) {
